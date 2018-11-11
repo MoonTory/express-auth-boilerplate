@@ -1,7 +1,9 @@
 {
-  "name": "boilerplate",
-  "version": "0.0.0",
+  "name": "express-boilerplate",
+  "version": "0.1.2",
   "private": true,
+  "author": "Gustavo Quinta - MoonTory",
+  "license": "MIT",
   "scripts": {
     "start": "node -r esm ./server/bin/www",
     "dev": "nodemon -r esm ./server/bin/www"
