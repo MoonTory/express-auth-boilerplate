@@ -31,8 +31,11 @@ export default {
   },
 
   signIn: (req, res, next) => {
+
+    const result = UsersService.signIn();
+
     res.status(200).json({
-      message: `Users-Controller handling sign in POST request to ${req.baseUrl}`
+      result
     });
   },
 

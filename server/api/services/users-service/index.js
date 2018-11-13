@@ -29,4 +29,9 @@ export default {
 
   },
 
+  signIn: () => {
+      const payload = { message: `Users-Controller handling sign in POST request to `  };
+      return payload;
+  },
+
 };
