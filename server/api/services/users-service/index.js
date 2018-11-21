@@ -8,7 +8,7 @@ export default {
 
       const { username, email, password } = payload;
 
-      // Checking if there is already a registered email
+      // Checking if there is already a registered username / email 
       const emailCheck = await UserModel.findOne({ email });
       const usernameCheck = await UserModel.findOne({ username });
 
