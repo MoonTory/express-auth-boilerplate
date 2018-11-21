@@ -18,10 +18,14 @@ export default {
 
       const payload = req.value.body;
       const result = await UsersService.createUser(payload);
+      const token = await UsersService.signToken(result);
 
       res.status(201).json({
-        message: `Users-Controller handling sign up POST request to ${req.baseUrl}`,
-        result: result,
+        payload: {
+          message: `Users-Controller handling sign up POST request to ${req.baseUrl}`,
+          result: result,
+          token: token,
+        }
       });
 
     } catch (error) {
@@ -40,6 +44,7 @@ export default {
   },
 
   secret: (req, res, next) => {
+    console.log('Success!!');
     res.status(200).json({
       message: `Users-Controller handling secret GET request to ${req.baseUrl}`
     });
