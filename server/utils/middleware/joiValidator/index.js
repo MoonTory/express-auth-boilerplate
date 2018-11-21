@@ -1,5 +1,5 @@
 import joi from 'joi';
-import schemas from './schemas';
+import schemas from './Schemas';
 
 export default {
 

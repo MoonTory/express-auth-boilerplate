@@ -1,6 +1,6 @@
 {
   "name": "express-boilerplate",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "author": "Gustavo Quinta - MoonTory",
   "license": "MIT",
@@ -22,7 +22,8 @@
     "mongoose-timestamp": "^0.6.0",
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.5"

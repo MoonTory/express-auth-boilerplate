@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { UsersController } from '../../controllers';
+import { UsersController, PassportController } from '../../controllers';
 import { joiValidator } from '../../../utils/middleware';
 
 const { validateBody, schemas } = joiValidator;
@@ -15,7 +15,7 @@ router.route('/signup')
 router.route('/signIn')
   .post(UsersController.signIn);
 
-router.get('/secret')
-  .get(UsersController.secret);
+router.route('/secret')
+  .get(PassportController.jwtAuth ,UsersController.secret);
 
 export default router;

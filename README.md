@@ -24,7 +24,10 @@ yarn dev
 ```
 
 ## Release History
-
+* 0.0.3
+    * Added Passport Controller
+    * Jwt Authentication Support
+    * Local Authentication Support
 * 0.0.2
     * Added API User Controller
     * Added API User Service
