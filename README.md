@@ -1,9 +1,8 @@
 # Express REST Auth Boilerplate
 > This is a boilerplate project, providing a scalable REST Express API utilizing production ready practices, providing basic authentication.
 
-One to two paragraph statement about your product and what it does.
 
-![](header.png)
+![](./misc/header.png)
 
 ## Installation
 
