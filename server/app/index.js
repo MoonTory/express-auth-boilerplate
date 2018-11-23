@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
+import passport from 'passport';
 import { errorCatch, errorHandler, connectDb } from '../utils/middleware';
 
 // Config
@@ -21,6 +22,7 @@ app.use(morgan(NODE_ENV));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(passport.initialize());
 
 // << - Routes - >>
 app.use('/api', api);

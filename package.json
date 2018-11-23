@@ -1,6 +1,6 @@
 {
   "name": "express-boilerplate",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": true,
   "author": "Gustavo Quinta - MoonTory",
   "license": "MIT",
@@ -9,6 +9,7 @@
     "dev": "nodemon -r esm ./server/bin/www"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
     "debug": "~2.6.9",

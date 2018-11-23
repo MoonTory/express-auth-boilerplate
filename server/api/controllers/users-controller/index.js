@@ -34,16 +34,19 @@ export default {
 
   },
 
-  signIn: (req, res, next) => {
+  login: async (req, res, next) => {
 
-    const result = UsersService.signIn();
+    const token = await UsersService.signToken(req.user);
 
     res.status(200).json({
-      result
+      payload: {
+        message: `Users-Controller handling login POST request to ${req.baseUrl}`,
+        token: token,
+      }
     });
   },
 
-  secret: (req, res, next) => {
+  secret: async (req, res, next) => {
     console.log('Success!!');
     res.status(200).json({
       message: `Users-Controller handling secret GET request to ${req.baseUrl}`

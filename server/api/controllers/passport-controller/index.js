@@ -3,4 +3,5 @@ require('./Strategy');
 
 export default {
   jwtAuth: passport.authenticate('jwt', { session: false }),
+  localAuth: passport.authenticate('local', { session: false }),
 };

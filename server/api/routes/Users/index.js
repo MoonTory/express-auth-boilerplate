@@ -10,12 +10,12 @@ router.route('/')
   .get(UsersController.index);
 
 router.route('/signup')
-  .post(validateBody(schemas.authSchema), UsersController.signUp);
+  .post(validateBody(schemas.registerSchema), UsersController.signUp);
 
-router.route('/signIn')
-  .post(UsersController.signIn);
+router.route('/login')
+  .post(validateBody(schemas.authSchema), PassportController.localAuth, UsersController.login);
 
 router.route('/secret')
-  .get(PassportController.jwtAuth ,UsersController.secret);
+  .get(PassportController.jwtAuth, UsersController.secret);
 
 export default router;

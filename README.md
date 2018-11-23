@@ -23,6 +23,9 @@ yarn dev
 ```
 
 ## Release History
+* 0.0.4
+    * Password hashing w/ bcryptjs
+    * Login token
 * 0.0.3
     * Added Passport Controller
     * Jwt Authentication Support

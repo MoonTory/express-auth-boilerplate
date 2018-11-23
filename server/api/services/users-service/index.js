@@ -31,15 +31,9 @@ export default {
 
   },
 
-  signIn: () => {
-      const payload = { message: `Users-Controller handling sign in POST request to `  };
-      return payload;
-  },
-
   signToken: async user => {
 
     try {
-      
       // Await & return signed JSON web token
       return await jwt.sign({
         iss: 'TsukiSystems',
