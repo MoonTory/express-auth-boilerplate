@@ -5,7 +5,9 @@ import { ExtractJwt } from 'passport-jwt';
 
 const JwtStrategy = require('passport-jwt').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
+const GoogleTokenStrategy = require('passport-google-plus-token');
 
+// JWT TOKEN STRATEGY
 passport.use(new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
   secretOrKey: JWT_SECRET
@@ -24,6 +26,17 @@ passport.use(new JwtStrategy({
   } catch (error) {
     done(error, false);
   }
+}));
+
+// GOOGLE OAUTH STRATEGY
+passport.use('googleToken', new GoogleTokenStrategy({
+  authorizationURL: '',
+  clientID: '132676015972-730eb1s2tc76pe3q818vhu3h02m8594e.apps.googleusercontent.com',
+  clientSecret: '7ekTmsETZ5GtsKEgrUSn_JHI'
+}, async (accessToken, refreshToken, profile, done) => {
+  console.log('accessToken', accessToken);
+  console.log('refreshToken', refreshToken);
+  console.log('profile', profile);
 }));
 
 // LOCAL STRATEGY

@@ -6,10 +6,13 @@
   "license": "MIT",
   "scripts": {
     "start": "node -r esm ./server/bin/www",
-    "dev": "nodemon -r esm ./server/bin/www"
+    "server-dev": "nodemon -r esm ./server/bin/www",
+    "client-dev": "cd client && yarn start",
+    "start-dev": "concurrently \"yarn run server-dev\" \"yarn run client-dev\""
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "concurrently": "^4.1.0",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
     "debug": "~2.6.9",
@@ -23,6 +26,7 @@
     "mongoose-timestamp": "^0.6.0",
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
+    "passport-google-plus-token": "^2.1.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0"
   },

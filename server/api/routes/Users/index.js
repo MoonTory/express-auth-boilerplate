@@ -15,6 +15,9 @@ router.route('/signup')
 router.route('/login')
   .post(validateBody(schemas.authSchema), PassportController.localAuth, UsersController.login);
 
+router.route('/oauth/google')
+  .post(PassportController.googleAuth);
+
 router.route('/secret')
   .get(PassportController.jwtAuth, UsersController.secret);
 
