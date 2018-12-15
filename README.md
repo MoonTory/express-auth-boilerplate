@@ -1,5 +1,5 @@
 # Express REST Auth Boilerplate
-> This is a boilerplate project, providing a scalable REST Express API utilizing production ready practices, providing basic authentication.
+> This is a boilerplate project, providing a scalable REST Express API utilizing production ready practices, with basic authentication.
 
 
 ![](./misc/header.png)
@@ -12,14 +12,14 @@ NPM:
 git clone https://github.com/MoonTory/express-boilerplate.git
 cd express-boilerplate/
 npm install -s
-npm dev
+npm server-dev
 ```
 
 Yarn:
 
 ```sh
 yarn install -s
-yarn dev
+yarn server-dev
 ```
 
 ## Release History
