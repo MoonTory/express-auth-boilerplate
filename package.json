@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node -r esm ./server/bin/www",
     "server-dev": "nodemon -r esm ./server/bin/www",
-    "client-dev": "cd client && yarn start",
+    "client-dev": "cd client && yarn serve",
     "start-dev": "concurrently \"yarn run server-dev\" \"yarn run client-dev\""
   },
   "dependencies": {
