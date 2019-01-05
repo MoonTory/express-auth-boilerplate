@@ -1,8 +1,9 @@
 import passport from 'passport';
+import { ExtractJwt } from 'passport-jwt';
+
 import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from '../../../../config';
 import { JWT_SECRET } from '../../../../config';
 import { UserModel } from '../../../../db/models';
-import { ExtractJwt } from 'passport-jwt';
 import { PassportService } from '../../../services';
 
 const JwtStrategy = require('passport-jwt').Strategy;
