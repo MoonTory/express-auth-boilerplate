@@ -3,41 +3,63 @@ import bcrypt from 'bcryptjs';
 import timestamp from 'mongoose-timestamp';
 
 const UserSchema = mongoose.Schema({
-  username: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
+  profile: {
+    method: {
+      type: String,
+      enum: ['local', 'google', 'facebook'],
+      required: true,
+    },
+    username: {
+      type: String,
+      required: true
+    },
+    email: {
+      type: String,
+      required: true
+    },
+    password: {
+      type: String
+    },
+    googleId: {
+      type: String
+    },
+  } // end profile
 });
 
 UserSchema.plugin(timestamp);
 
 UserSchema.pre('save', async function(next) {
   try {
+    if (this.profile.method !== 'local') {
+      next();
+    }
+
+    this.profile.password = await this.hashPassword(this.profile.password);
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
+UserSchema.methods.hashPassword = async function(password) {
+  try {
     // Generate Salt
     const salt = await bcrypt.genSalt(10);
 
     // Generate a password hash (Salt + Hash)
-    const passwordHash = await bcrypt.hash(this.password, salt);
+    const passwordHash = await bcrypt.hash(password, salt);
 
     // Save hashed password to the model to be stored in DB 
-    this.password = passwordHash;
-    next();
+    return passwordHash;
+
   } catch (error) {
-    next(error); // Return error
+    throw new Error(error);
   }
-});
+};
 
 UserSchema.methods.isValidPassword = async function(newPassword) {
   try {
-    return await bcrypt.compare(newPassword, this.password);
+    return await bcrypt.compare(newPassword, this.profile.password);
   } catch(error) {
     throw new Error(error);
   }

@@ -1,7 +1,9 @@
 export const {
-  APP_PORT = process.env.PORT || 5001,
+  APP_PORT = process.env.PORT || 5000,
   NODE_ENV = 'dev',
   JWT_SECRET = 'superdupersectret',
+  GOOGLE_CLIENT_ID = '',
+  GOOGLE_CLIENT_SECRET = '',
 
 
   DB_USER = '',

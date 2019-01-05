@@ -3,6 +3,9 @@
 # dependencies
 /node_modules
 
+# config backup
+./server/config/config.js
+
 # testing
 
 # production

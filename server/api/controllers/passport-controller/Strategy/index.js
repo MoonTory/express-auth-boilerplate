@@ -1,7 +1,9 @@
 import passport from 'passport';
+import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from '../../../../config';
 import { JWT_SECRET } from '../../../../config';
 import { UserModel } from '../../../../db/models';
 import { ExtractJwt } from 'passport-jwt';
+import { PassportService } from '../../../services';
 
 const JwtStrategy = require('passport-jwt').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
@@ -31,21 +33,35 @@ passport.use(new JwtStrategy({
 // GOOGLE OAUTH STRATEGY
 passport.use('googleToken', new GoogleTokenStrategy({
   authorizationURL: '',
-  clientID: '132676015972-730eb1s2tc76pe3q818vhu3h02m8594e.apps.googleusercontent.com',
-  clientSecret: '7ekTmsETZ5GtsKEgrUSn_JHI'
+  clientID: GOOGLE_CLIENT_ID,
+  clientSecret: GOOGLE_CLIENT_SECRET
 }, async (accessToken, refreshToken, profile, done) => {
-  console.log('accessToken', accessToken);
-  console.log('refreshToken', refreshToken);
-  console.log('profile', profile);
+  try {
+    // Check DB if Google Email already exists
+    const matchGoogleEmail = await UserModel.findOne({ "profile.email": profile.emails[0].value });
+    if (matchGoogleEmail) {
+      if (matchGoogleEmail.profile.googleId === undefined) {
+          const updatedUser = await PassportService.googleOAuthUpdate(profile);
+          return done(null,  updatedUser);
+      } else { return done(null, matchGoogleEmail); } 
+    }
+
+    // Create new User with GoogleId
+    const newGoogleUser =  await PassportService.googleOAuthCreate(profile);
+    return done(null, newGoogleUser);
+
+  } catch (error) {
+    done(error, false, error.message);
+  }
 }));
 
 // LOCAL STRATEGY
 passport.use(new LocalStrategy({
-  usernameField: 'username'
-}, async (username, password, done) => {
+  usernameField: 'email'
+}, async (email, password, done) => {
   try {
   // Find the user given the email
-  const query = await UserModel.findOne({ username });
+  const query = await UserModel.findOne({ "profile.email": email });
 
   // If not, handle it
   if (!query) {
