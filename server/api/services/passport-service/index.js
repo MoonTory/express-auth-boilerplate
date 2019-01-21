@@ -10,13 +10,13 @@ export default {
     }
   },
 
-  updateGoogleWithPassword: async payload => {
+  updateGoogleWithPassword: async profile => {
     try {
       // Updates a Google Created Account with no Password
-      let updatedUser = new UserModel();
-      payload.password = await updatedUser.hashPassword(payload.password);
-      updatedUser = await UserModel.findOneAndUpdate({ "profile.email": payload.email }, 
-        { $set: { "profile.username": payload.username, "profile.password": payload.password }});
+      const updatedUser = new UserModel();
+      profile.password = await updatedUser.hashPassword(payload.password);
+      updatedUser = await UserModel.findOneAndUpdate({ "profile.email": profile.email }, 
+        { $set: { "profile.username": profile.username, "profile.password": profile.password }});
 
       return updatedUser;
     } catch (error) {

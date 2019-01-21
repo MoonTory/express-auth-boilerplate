@@ -1,5 +1,5 @@
 import joi from 'joi';
-import schemas from './Schemas';
+import Schemas from './Schemas';
 
 export default {
 
@@ -18,6 +18,6 @@ export default {
     }
   },
 
-  schemas,
+  Schemas,
 
 };

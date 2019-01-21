@@ -1,5 +1,5 @@
 import passport from 'passport';
-require('./Strategy');
+require('./Strategies');
 
 export default {
   jwtAuth: passport.authenticate('jwt', { session: false }),
