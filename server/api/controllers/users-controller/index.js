@@ -2,14 +2,14 @@ import { UsersService } from '../../services';
 
 export default {
 
-  // Index controller middleware
+  // Index Controller Middleware
   index: (req, res, next) => {
     res.status(200).json({
       message: `Users-Controller handling GET request to ${req.baseUrl}`
     });
   },
 
-  // Sign up controller middleware
+  // SignUp Controller Middleware
   signUp: async (req, res, next) => {
     try {
 
@@ -19,6 +19,17 @@ export default {
 
       const payload = req.value.body;
       const result = await UsersService.createUser(payload);
+
+      // Check if result undefined then "User" already exists, handle accordingly.
+      if (result === undefined) {
+        res.status(409).json({
+          payload: {
+            message: 'Username/Email already in use'
+          }
+        })
+      }
+      
+      // Else valid User was created/updated sign and return JWT Token to client.
       const token = await UsersService.signToken(result);
 
       res.status(201).json({
@@ -33,7 +44,7 @@ export default {
     }
   },
 
-  // Login controller middleware
+  // Login Controler Middleware
   login: async (req, res, next) => {
     const token = await UsersService.signToken(req.user);
 
@@ -45,7 +56,12 @@ export default {
     });
   },
 
+<<<<<<< HEAD
   googleLogin: async (req, res, next) => {
+=======
+  // Google OAuth Controller Middleware
+  googleOAuth: async (req, res, next) => {
+>>>>>>> 394fa740f05117f54b18b3016ca2a69bc34c948a
     const token = await UsersService.signToken(req.user);
 
     res.status(200).json({
@@ -56,7 +72,7 @@ export default {
     });
   },
 
-  // Secret controller middleware
+  // Secret Controler Middleware
   secret: async (req, res, next) => {
     console.log('Success!!');
     res.status(200).json({

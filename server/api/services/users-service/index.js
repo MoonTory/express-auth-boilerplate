@@ -16,7 +16,8 @@ export default {
         // Check if user doesn't have a password 
         if (emailCheck.profile.password === undefined) {
           return await PassportService.updateGoogleWithPassword(payload);
-        } else { return emailCheck; }
+        } else { return undefined; }
+
       } else {
         // Create a new user model using payload
         const newUser = new UserModel({ 
